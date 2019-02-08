@@ -1,4 +1,4 @@
-export const select = (select_user, task) =>{
+export const selectTask = (select_user, task) =>{
 	return{
 		type: "TASK_SELECTED",
 		payload: [select_user, task]

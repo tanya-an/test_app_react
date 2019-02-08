@@ -1,31 +1,14 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { createStore, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga'
-import { Provider, connect } from 'react-redux';
-
-import { Users } from "./components/ListUsers";
-
-import { showLoadUsers } from './sagas';
-import { UsersReducer } from "./redux/reducer_users";
-import { loadUsers } from "./redux/action";
-
-import { composeWithDevTools } from 'redux-devtools-extension';
-
-const sagaMiddleware = createSagaMiddleware()
-const store = createStore(
-	UsersReducer,
-	composeWithDevTools(applyMiddleware(sagaMiddleware))
-);
-
-sagaMiddleware.run(showLoadUsers);
-
-store.dispatch(loadUsers());
+import { Provider } from 'react-redux';
+import { UserList } from "./views/UserList/UserList";
+import { loadUsers } from "./store/Actions";
+import { store } from "./store/Store";
 
 ReactDOM.render(
   <Provider store={store}>
-    <Users />
+    <UserList />
   </Provider>,
   document.getElementById('app-root')
 );
